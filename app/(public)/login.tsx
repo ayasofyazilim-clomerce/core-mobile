@@ -154,7 +154,9 @@ export default function Login() {
               />
             </View>
 
-            {submitDisabled && <Text className="mt-4 text-red-700">{submitError} </Text>}
+            {submitDisabled && submitError && (
+              <Text className="mt-4 text-red-700">{submitError}</Text>
+            )}
 
             <SubmitButton
               onSubmit={loginFunction}

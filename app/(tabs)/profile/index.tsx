@@ -98,8 +98,8 @@ export default function Profile() {
           <ListItem title="Bildirim tercihleri" icon="notifications-outline" />
         </ListView>
         <ListView title="Diğer">
-          <ListItem title="Destek" icon="help-circle-outline" />
-          <ListItem title="Çıkış Yap" icon="exit" onPress={logoutAndRedirect} />
+          <ListItem title="Destek" icon="help-outline" />
+          <ListItem title="Çıkış Yap" icon="exit-outline" onPress={logoutAndRedirect} />
         </ListView>
       </View>
 

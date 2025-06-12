@@ -38,17 +38,18 @@ export default function Modal() {
             <Input
               label="Tenant Adı"
               value={tenantNameInput}
-              // error={error}
+              icon="earth"
               autoFocus={true}
               onChangeText={(text) => setTenantNameInput(text)}
             />
           </View>
-          {error && <Text className="mt-4 text-red-700">Bu tenant adı bulunamadı. </Text>}
+          {error && <Text className="mt-2 text-red-700">Bu tenant adı bulunamadı. </Text>}
         </View>
         <SubmitButton
           className="mt-4"
           disabled={!tenantName}
           onSubmit={getTenantName}
+          iconColor="#fff"
           icon={'chevron-forward'}>
           Devam Et
         </SubmitButton>
