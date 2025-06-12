@@ -4,7 +4,7 @@ import { getGrantedPoliciesApi, getUserProfileApi } from '../AccountService/acti
 import { ENVIRONMENT } from '../../lib';
 import * as SecureStore from 'expo-secure-store';
 
-export async function checkIsLoggedIn() {
+export async function isUserHasAnAccessToken() {
   const accessToken = (await AsyncStorage.getItem('accessToken')) || undefined;
   if (!accessToken) {
     return false;

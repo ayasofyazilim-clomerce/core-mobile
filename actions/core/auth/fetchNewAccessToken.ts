@@ -22,10 +22,12 @@ export async function fetchNewAccessTokenByRefreshToken() {
     });
     const data = await response.json();
     if (!response.ok) {
-      throw new Error('Login failed');
+      console.log('refresh token error:' + response.statusText, response.body);
+      throw new Error('Refresh token fetch failed');
     }
-
+    console.log('New access token fetched successfully', Object.keys(data));
     await AsyncStorage.setItem('refreshToken', data.refresh_token);
+    await AsyncStorage.setItem('accessToken', data.access_token);
     return true;
   } catch (error) {
     console.log('Login error:', error);

@@ -1,7 +1,7 @@
 import { router, SplashScreen } from 'expo-router';
 import { useEffect } from 'react';
 import { getGrantedPoliciesApi, getUserProfileApi } from '~/actions/core/AccountService/actions';
-import { checkIsLoggedIn } from '~/actions/core/auth/actions';
+import { isUserHasAnAccessToken } from '~/actions/core/auth/actions';
 import { useStore } from '~/store/store';
 import * as SecureStore from 'expo-secure-store';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -32,9 +32,10 @@ export default function App() {
   }
 
   async function initApp() {
-    const isLoggedIn = await checkIsLoggedIn();
+    const isLoggedIn = await isUserHasAnAccessToken();
     if (isLoggedIn) {
       console.log('User is logged in');
+
       const userProfile = await getUserProfileApi();
       if (!userProfile) {
         console.log('Error fetching user profile:', userProfile);
