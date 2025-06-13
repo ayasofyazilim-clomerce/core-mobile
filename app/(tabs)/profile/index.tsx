@@ -96,10 +96,11 @@ export default function Profile() {
             onPress={() => router.navigate('/(tabs)/profile/(account)/change-password')}
           />
           <ListItem title="Bildirim tercihleri" icon="notifications-outline" />
+
+          <ListItem title="Destek" icon="information-circle-outline" />
         </ListView>
         <ListView title="Diğer">
-          <ListItem title="Destek" icon="help-outline" />
-          <ListItem title="Çıkış Yap" icon="exit-outline" onPress={logoutAndRedirect} />
+          <ListItem title="Çıkış Yap" icon="log-out-outline" onPress={logoutAndRedirect} />
         </ListView>
       </View>
 
