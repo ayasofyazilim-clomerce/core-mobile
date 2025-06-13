@@ -44,7 +44,7 @@ function ScanResult({ parseResult, image }: { parseResult: ParseResult; image: s
           })}
 
           <View className="mt-4">
-            <SubmitButton className="mt-auto" icon={'arrow-forward'} onSubmit={onSubmit}>
+            <SubmitButton icon={'arrow-forward'} iconColor="white" onSubmit={onSubmit}>
               Profili Kaydet
             </SubmitButton>
           </View>

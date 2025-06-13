@@ -16,7 +16,7 @@ import {
   isValidPhoneNumber,
   PhoneInputProps,
 } from 'react-native-international-phone-number';
-import { getUserData } from '~/actions/auth/actions';
+import { getUserData } from '~/actions/core/auth/actions';
 import { editProfile } from '~/actions/core/auth/register';
 import SubmitButton from '~/components/custom/Button.Submit';
 import Input, { InputPhone } from '~/components/custom/Input';
@@ -132,7 +132,11 @@ export default function EditProfileForm() {
           </View>
           {submitDisabled && <Text className="mt-4 text-red-700">{submitError} </Text>}
 
-          <SubmitButton icon={'chevron-forward'} onSubmit={onSubmit} disabled={isSubmitDisabled}>
+          <SubmitButton
+            icon={'chevron-forward'}
+            iconColor="white"
+            onSubmit={onSubmit}
+            disabled={isSubmitDisabled}>
             Profili Kaydet
           </SubmitButton>
         </View>

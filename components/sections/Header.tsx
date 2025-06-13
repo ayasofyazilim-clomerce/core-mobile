@@ -11,6 +11,7 @@ export function Header(props: BottomTabHeaderProps | NativeStackHeaderProps) {
     <View
       style={{
         paddingHorizontal: 24,
+        paddingBottom: 12,
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -22,7 +23,7 @@ export function Header(props: BottomTabHeaderProps | NativeStackHeaderProps) {
         {'headerBackVisible' in props.options && (
           <Icon
             name="arrow-back"
-            contentStyle={{ alignItems: 'flex-start' }}
+            className="mr-2"
             size={24}
             onPress={() => {
               router.back();

@@ -12,7 +12,7 @@ import {
 
 import Icon from '@expo/vector-icons/Ionicons';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { getUserData, loginWithCredentials } from '~/actions/auth/actions';
+import { getUserData, loginWithCredentials } from '~/actions/core/auth/actions';
 import { signUp } from '~/actions/core/auth/register';
 import SubmitButton from '~/components/custom/Button.Submit';
 import Input from '~/components/custom/Input';
@@ -67,7 +67,9 @@ export default function Register() {
     <SafeAreaView className="flex-1" edges={['bottom']}>
       <View className="flex-row justify-start px-6">
         <Button
+          variant={'ghost'}
           onPress={() => router.replace('/(public)/login')}
+          className="gap-2"
           style={{ flexDirection: 'row', alignItems: 'center' }}>
           <Icon name="arrow-back" size={24} color="#333" />
           <Text className="text-xl font-bold">Geri</Text>
@@ -106,7 +108,7 @@ export default function Register() {
                 onChangeText={(text) => setPasswordInput(text)}
                 onChange={onInputChange}
                 secureTextEntry={!showPassword}
-                icon={'lock-closed'}
+                icon={'lock-closed-outline'}
                 right={
                   <Icon
                     icon={showPassword ? 'eye-off' : 'eye'}
@@ -119,8 +121,8 @@ export default function Register() {
             {submitDisabled && <Text className="mt-4 text-red-700">{submitError} </Text>}
 
             <SubmitButton
-              className="mt-auto"
               icon={'arrow-forward'}
+              iconColor="white"
               onSubmit={signUpFunction}
               disabled={isSubmitDisabled}>
               Hesap Oluştur

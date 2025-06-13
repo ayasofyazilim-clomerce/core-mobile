@@ -1,12 +1,13 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { clearTokens, getToken, saveToken } from '~/actions/lib';
 
 export async function fetchNewAccessTokenByRefreshToken() {
   try {
     console.log('Fetching new access token using refresh token...');
-    const refreshToken = await AsyncStorage.getItem('refreshToken');
+    const refreshToken = (await getToken('refresh')) || undefined;
     if (!refreshToken) {
       console.log('No refresh token found, removing access token...');
-      await AsyncStorage.removeItem('accessToken');
+
+      await clearTokens();
       throw new Error('No refresh token found');
     }
     const response = await fetch('https://api.unirefund.com/connect/token', {
@@ -22,10 +23,12 @@ export async function fetchNewAccessTokenByRefreshToken() {
     });
     const data = await response.json();
     if (!response.ok) {
-      throw new Error('Login failed');
+      console.log('refresh token error:' + response.statusText, response.body);
+      throw new Error('Refresh token fetch failed');
     }
-
-    await AsyncStorage.setItem('refreshToken', data.refresh_token);
+    console.log('New access token fetched successfully', Object.keys(data));
+    await saveToken(data.access_token, 'access');
+    await saveToken(data.refresh_token, 'refresh');
     return true;
   } catch (error) {
     console.log('Login error:', error);

@@ -3,26 +3,23 @@ import { getAccountServiceClient } from '~/actions/lib';
 import type { GrantedPolicies } from './types';
 
 export async function getUserProfileApi() {
-  async function getData() {
+  return await fetchRequest(async () => {
     const client = await getAccountServiceClient();
     return await client.profile.getApiAccountMyProfile();
-  }
-  return await fetchRequest(getData,"getUserProfileApi");
+  }, 'getUserProfileApi');
 }
 export async function getGrantedPoliciesApi() {
-  async function getData() {
+  return await fetchRequest(async () => {
     const client = await getAccountServiceClient();
     const response = await client.abpApplicationConfiguration.getApiAbpApplicationConfiguration({
       includeLocalizationResources: false,
     });
     return response.auth?.grantedPolicies as GrantedPolicies;
-  }
-  return await fetchRequest(getData,"getGrantedPoliciesApi");
+  }, 'getGrantedPoliciesApi');
 }
 export async function getTenantByNameApi(name: string) {
-  async function getData() {
+  return await fetchRequest(async () => {
     const client = await getAccountServiceClient();
     return await client.abpTenant.getApiAbpMultiTenancyTenantsByNameByName({ name });
-  }
-  return await fetchRequest(getData,"getTenantByNameApi");
+  }, 'getTenantByNameApi');
 }

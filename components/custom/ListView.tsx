@@ -5,14 +5,19 @@ import { IoniconsType } from '~/lib/types';
 export function ListItem({
   title,
   icon,
+  isDisabled = false,
   onPress,
 }: {
   title: string;
   icon: IoniconsType;
+  isDisabled?: boolean;
   onPress?(): void;
 }) {
   return (
-    <Pressable className="flex-row items-center rounded-lg p-2 active:bg-gray-50" onPress={onPress}>
+    <Pressable
+      className={`${isDisabled ? 'opacity-50' : ''} flex flex-row items-center rounded-lg p-2 active:bg-gray-50`}
+      disabled={isDisabled}
+      onPress={onPress}>
       <Icon name={icon} color={'#080d19'} size={28} />
       <Text className="ml-3 mr-auto text-lg text-[#080d19]">{title}</Text>
       <Icon name="chevron-forward" color={'#080d19'} size={22} />

@@ -86,6 +86,7 @@ function RegistrationFlow() {
           <View className="mt-4">
             <SubmitButton
               iconColor="white"
+              variant={'secondary'}
               icon={'log-out'}
               onSubmit={async () => redirectToLogin()}>
               Çıkış yap

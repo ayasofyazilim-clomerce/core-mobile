@@ -2,7 +2,7 @@ import {
   AccountServiceClient,
   Volo_Abp_Account_ProfileDto,
 } from '@ayasofyazilim/core-saas/AccountService';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as SecureStore from 'expo-secure-store';
 
 const HEADERS = {
   'X-Requested-With': 'XMLHttpRequest',
@@ -21,11 +21,68 @@ export function isProfileCompleted(profile: Volo_Abp_Account_ProfileDto | undefi
 }
 
 export async function getAccountServiceClient(customHeaders?: Record<string, string>) {
-  const accessToken = (await AsyncStorage.getItem('accessToken')) || undefined;
+  const accessToken = (await getToken('access')) || undefined;
 
   return new AccountServiceClient({
     TOKEN: accessToken,
     BASE: 'https://api.unirefund.com',
     HEADERS: { ...HEADERS, ...customHeaders },
   });
+}
+
+export async function saveToken(token: string, type: 'access' | 'refresh') {
+  function splitStringByBytes(input: string, maxBytes: number = 2048): string[] {
+    const encoder = new TextEncoder();
+    const result: string[] = [];
+    let current = '';
+    let currentBytes = 0;
+
+    for (const char of input) {
+      const charBytes = encoder.encode(char).length;
+      if (currentBytes + charBytes > maxBytes) {
+        result.push(current);
+        current = char;
+        currentBytes = charBytes;
+      } else {
+        current += char;
+        currentBytes += charBytes;
+      }
+    }
+
+    if (current) {
+      result.push(current);
+    }
+
+    return result;
+  }
+  await clearOldTokens(type);
+  const parts = splitStringByBytes(token);
+  for (let i = 0; i < parts.length; i++) {
+    await SecureStore.setItemAsync(`${type}TokenPart${i}`, parts[i]);
+  }
+  await SecureStore.setItemAsync(`${type}TokenPartCount`, parts.length.toString());
+}
+export async function getToken(type: 'access' | 'refresh') {
+  const count = parseInt((await SecureStore.getItemAsync(`${type}TokenPartCount`)) || '0', 10);
+  if (count === 0) return undefined;
+
+  const parts: string[] = [];
+  for (let i = 0; i < count; i++) {
+    const part = await SecureStore.getItemAsync(`${type}TokenPart${i}`);
+    if (part) {
+      parts.push(part);
+    }
+  }
+  return parts.join('');
+}
+async function clearOldTokens(type: 'access' | 'refresh') {
+  const parts = parseInt((await SecureStore.getItemAsync(`${type}TokenPartCount`)) || '0', 10);
+  for (let i = 0; i < parts; i++) {
+    SecureStore.deleteItemAsync(`${type}TokenPart${i}`);
+  }
+  SecureStore.deleteItemAsync(`${type}TokenPartCount`);
+}
+export async function clearTokens() {
+  await clearOldTokens('access');
+  await clearOldTokens('refresh');
 }
