@@ -122,6 +122,7 @@ export default function Register() {
 
             <SubmitButton
               icon={'arrow-forward'}
+              iconColor="white"
               onSubmit={signUpFunction}
               disabled={isSubmitDisabled}>
               Hesap Oluştur
