@@ -35,8 +35,7 @@ function Input(args: InputProps) {
           value={args.value}
           onChangeText={args.onChangeText}
           onChange={args.onChange}
-          style={{ height: 56 }}
-          className="rounded-md border-2 pl-12"
+          className="mb-2 min-h-16 rounded-md border-2 pl-12"
         />
         {args.right && <View className="z-100 absolute right-5 top-5 flex">{args.right}</View>}
       </View>

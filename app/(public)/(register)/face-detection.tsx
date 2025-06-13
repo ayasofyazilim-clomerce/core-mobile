@@ -117,7 +117,7 @@ function FaceDetection() {
   if (!device) return null;
 
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+    <View className="flex flex-1 items-center justify-center">
       <CircularProgress progress={progress} radius={108}>
         <View className="relative h-[200px] w-[200px] overflow-hidden rounded-full">
           <Camera

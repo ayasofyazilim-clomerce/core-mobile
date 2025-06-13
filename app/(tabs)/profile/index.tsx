@@ -76,11 +76,7 @@ export default function Profile() {
           </Avatar>
           <Text className="text-lg font-bold">{fullName}</Text>
           <Pressable className="absolute right-0 top-0" onPress={() => setModalVisible(true)}>
-            <QRCodeStyled
-              data={'Simple QR Code'}
-              style={{ backgroundColor: 'white' }}
-              pieceSize={2}
-            />
+            <QRCodeStyled data={'Simple QR Code'} pieceSize={2} />
           </Pressable>
         </View>
 

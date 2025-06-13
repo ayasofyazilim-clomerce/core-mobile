@@ -122,49 +122,41 @@ function ScanDocument() {
   }
 
   return (
-    <View style={{ flex: 1 }}>
-      <View style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, zIndex: 9 }}>
+    <View className="flex-1">
+      <View className="z-9 absolute inset-0">
         <View className="absolute z-10 mt-4 flex-row justify-start px-6">
-          <Button
-            onPress={() => router.back()}
-            style={{ flexDirection: 'row', alignItems: 'center' }}>
+          <Button onPress={() => router.back()} className="flex-row items-center">
             <Icon name="arrow-back" size={20} color="#fff" />
             <Text className="text-xl font-bold">Geri</Text>
           </Button>
         </View>
-        <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.5)' }} />
-        <View style={{ flexDirection: 'row' }}>
-          <View style={{ width: 10, backgroundColor: 'rgba(0,0,0,0.5)' }} />
+        <View className="flex-1 bg-black/50" />
+        <View className="flex-row">
+          <View className="w-[10px] bg-black/50" />
           <View
-            style={{
-              width: scanningAreaWidth,
-              height: scanningAreaHeight,
-              borderWidth: 2,
-              borderColor: 'white',
-              justifyContent: 'center',
-              borderStyle: 'dashed',
-            }}>
-            <Text style={{ color: 'white', fontSize: 20, textAlign: 'center', fontWeight: 'bold' }}>
+            className="justify-center border border-dashed border-white"
+            style={{ width: scanningAreaWidth, height: scanningAreaHeight }}>
+            <Text className="text-center text-lg font-bold text-white">
               Kimliğinizi bu alana yerleştirin
             </Text>
             {image && (
               <Image
                 source={{ uri: image }}
+                className="object-contain"
                 style={{
                   width: scanningAreaWidth - 60,
-                  aspectRatio: scanningAreaWidth / scanningAreaHeight, // otomatik bulundu
-                  resizeMode: 'contain',
+                  aspectRatio: scanningAreaWidth / scanningAreaHeight,
                 }}
               />
             )}
           </View>
-          <View style={{ width: 10, backgroundColor: 'rgba(0,0,0,0.5)' }} />
+          <View className="w-[10px] bg-black/50" />
         </View>
-        <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.5)' }} />
+        <View className="flex-1 bg-black/50" />
       </View>
       <CameraView
         ref={cameraRef}
-        style={{ flex: 1 }}
+        className="flex-1"
         facing="back"
         mode="picture"
         autofocus="on"

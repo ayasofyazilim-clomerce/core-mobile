@@ -38,20 +38,11 @@ export default function TabLayout() {
             tabBarButton: () => (
               <Pressable
                 onPress={() => router.push('/(tabs)/two')}
+                className="absolute bottom-2.5 flex h-16 w-16 items-center justify-center rounded-full border-2 border-gray-200 bg-[#de1919]"
                 style={{
-                  position: 'absolute',
-                  bottom: 10,
-                  height: 60,
-                  width: 60,
-                  borderRadius: 30,
-                  borderWidth: 3,
-                  borderColor: '#fff',
-                  backgroundColor: '#de1919',
-                  justifyContent: 'center',
-                  alignItems: 'center',
                   shadowColor: '#000',
-                  shadowOffset: { width: 0, height: 4 },
-                  shadowOpacity: 0.3,
+                  shadowOffset: { width: 0, height: 6 },
+                  shadowOpacity: 0.4,
                   shadowRadius: 5,
                   elevation: 8,
                 }}>

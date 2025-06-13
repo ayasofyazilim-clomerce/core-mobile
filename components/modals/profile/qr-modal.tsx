@@ -35,11 +35,7 @@ export default function QRModal({
           onDismiss={() => setModalVisible(false)}
           snapPoints={[262]}>
           <BottomSheetView style={styles.contentContainer}>
-            <QRCodeStyled
-              data={profile?.userName || ''}
-              style={{ backgroundColor: 'white' }}
-              pieceSize={6}
-            />
+            <QRCodeStyled data={profile?.userName || ''} pieceSize={6} />
           </BottomSheetView>
         </BottomSheetModal>
       </BottomSheetModalProvider>
