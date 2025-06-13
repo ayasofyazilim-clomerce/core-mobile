@@ -9,6 +9,7 @@ import { useRegistrationStore, useStore } from '~/store/store';
 
 function RegistrationFlow() {
   const { profile } = useStore();
+
   const { scannedDocument } = useRegistrationStore();
   const isProfileCompleted = !!profile?.name && !!profile?.surname && !!profile.phoneNumber;
   const [isLivenessChecked, setLivenessChecked] = useState(false);
@@ -29,7 +30,7 @@ function RegistrationFlow() {
 
   return (
     <>
-      <Stack.Screen options={{ headerShown: false }} />
+      <Stack.Screen />
       <View style={styles.container}>
         <View className="mb-4">
           <Text className="text-base font-semibold text-black">
@@ -73,26 +74,6 @@ function RegistrationFlow() {
             router.push('/(public)/(register)/face-detection');
           }}
         />
-        <View className="mt-4">
-          <SubmitButton
-            icon={'chevron-forward'}
-            iconColor="white"
-            onSubmit={async () => redirectToHome()}
-            disabled={!isProfileCompleted}>
-            Uygulamaya devam et
-          </SubmitButton>
-        </View>
-        {!isProfileCompleted && (
-          <View className="mt-4">
-            <SubmitButton
-              iconColor="white"
-              variant={'secondary'}
-              icon={'log-out'}
-              onSubmit={async () => redirectToLogin()}>
-              Çıkış yap
-            </SubmitButton>
-          </View>
-        )}
       </View>
     </>
   );

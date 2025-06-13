@@ -86,6 +86,7 @@ export default function Profile() {
             icon="person-circle-outline"
             onPress={() => router.navigate('/(tabs)/profile/(account)/edit-profile')}
           />
+
           <ListItem
             title="Şifre değiştir"
             icon="lock-closed-outline"
