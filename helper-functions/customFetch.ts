@@ -13,7 +13,9 @@ export async function fetchRequest<T>(request: () => Promise<T>, apiName: string
       if (err.status === 401) {
         // Refresh the token and retry the request
         if (await fetchNewAccessTokenByRefreshToken()) {
-          res = await fetchRequest(request, apiName);
+          res = (await fetchRequest(request, apiName)) as T | undefined;
+          console.log(res);
+          return res;
         } else {
           console.log('Failed to refresh token');
           await clearTokens();
