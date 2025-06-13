@@ -132,7 +132,11 @@ export default function EditProfileForm() {
           </View>
           {submitDisabled && <Text className="mt-4 text-red-700">{submitError} </Text>}
 
-          <SubmitButton icon={'chevron-forward'} onSubmit={onSubmit} disabled={isSubmitDisabled}>
+          <SubmitButton
+            icon={'chevron-forward'}
+            iconColor="white"
+            onSubmit={onSubmit}
+            disabled={isSubmitDisabled}>
             Profili Kaydet
           </SubmitButton>
         </View>
