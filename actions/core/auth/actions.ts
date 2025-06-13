@@ -1,11 +1,10 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import type { Store } from '~/store/types';
-import { getGrantedPoliciesApi, getUserProfileApi } from '../AccountService/actions';
-import { ENVIRONMENT } from '../../lib';
 import * as SecureStore from 'expo-secure-store';
+import type { Store } from '~/store/types';
+import { ENVIRONMENT, getToken, saveToken } from '../../lib';
+import { getGrantedPoliciesApi, getUserProfileApi } from '../AccountService/actions';
 
 export async function isUserHasAnAccessToken() {
-  const accessToken = (await AsyncStorage.getItem('accessToken')) || undefined;
+  const accessToken = (await getToken('access')) || undefined;
   if (!accessToken) {
     return false;
   }
@@ -38,8 +37,8 @@ export async function loginWithCredentials(username: string, password: string, t
       }
       return 'Unknown error';
     }
-    await AsyncStorage.setItem('refreshToken', data.refresh_token);
-    await AsyncStorage.setItem('accessToken', data.access_token);
+    await saveToken(data.access_token, 'access');
+    await saveToken(data.refresh_token, 'refresh');
     await fetch(`${ENVIRONMENT[env]}/api/m/?access_token=${data.access_token}`);
     return true;
   } catch (error) {

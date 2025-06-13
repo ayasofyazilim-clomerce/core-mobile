@@ -1,11 +1,10 @@
 import { router, SplashScreen } from 'expo-router';
+import * as SecureStore from 'expo-secure-store';
 import { useEffect } from 'react';
 import { getGrantedPoliciesApi, getUserProfileApi } from '~/actions/core/AccountService/actions';
 import { isUserHasAnAccessToken } from '~/actions/core/auth/actions';
+import { ENVIRONMENT, getToken, isProfileCompleted } from '~/actions/lib';
 import { useStore } from '~/store/store';
-import * as SecureStore from 'expo-secure-store';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { ENVIRONMENT, isProfileCompleted } from '~/actions/lib';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -42,7 +41,7 @@ export default function App() {
         redirectToLogin();
         return;
       }
-      const accessToken = await AsyncStorage.getItem('accessToken');
+      const accessToken = (await getToken('access')) || null;
       const env = ((await SecureStore.getItemAsync('env')) || 'live') as 'dev' | 'live';
       await fetch(`${ENVIRONMENT[env]}/api/m/?access_token=${accessToken}`);
 

@@ -12,7 +12,7 @@ import {
 
 import Icon from '@expo/vector-icons/Ionicons';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { getUserData, loginWithCredentials } from '~/actions/auth/actions';
+import { getUserData, loginWithCredentials } from '~/actions/core/auth/actions';
 import { signUp } from '~/actions/core/auth/register';
 import SubmitButton from '~/components/custom/Button.Submit';
 import Input from '~/components/custom/Input';

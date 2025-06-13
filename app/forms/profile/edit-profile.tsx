@@ -16,7 +16,7 @@ import {
   isValidPhoneNumber,
   PhoneInputProps,
 } from 'react-native-international-phone-number';
-import { getUserData } from '~/actions/auth/actions';
+import { getUserData } from '~/actions/core/auth/actions';
 import { editProfile } from '~/actions/core/auth/register';
 import SubmitButton from '~/components/custom/Button.Submit';
 import Input, { InputPhone } from '~/components/custom/Input';
