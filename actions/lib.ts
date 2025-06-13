@@ -55,7 +55,7 @@ export async function saveToken(token: string, type: 'access' | 'refresh') {
 
     return result;
   }
-
+  await clearOldTokens(type);
   const parts = splitStringByBytes(token);
   for (let i = 0; i < parts.length; i++) {
     await SecureStore.setItemAsync(`${type}TokenPart${i}`, parts[i]);
@@ -75,7 +75,14 @@ export async function getToken(type: 'access' | 'refresh') {
   }
   return parts.join('');
 }
+async function clearOldTokens(type: 'access' | 'refresh') {
+  const parts = parseInt((await SecureStore.getItemAsync(`${type}TokenPartCount`)) || '0', 10);
+  for (let i = 0; i < parts; i++) {
+    SecureStore.deleteItemAsync(`${type}TokenPart${i}`);
+  }
+  SecureStore.deleteItemAsync(`${type}TokenPartCount`);
+}
 export async function clearTokens() {
-  await SecureStore.deleteItemAsync('accessToken');
-  await SecureStore.deleteItemAsync('refreshToken');
+  await clearOldTokens('access');
+  await clearOldTokens('refresh');
 }
