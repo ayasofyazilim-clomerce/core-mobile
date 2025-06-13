@@ -69,8 +69,7 @@ export default function Register() {
         <Button
           variant={'ghost'}
           onPress={() => router.replace('/(public)/login')}
-          className="gap-2"
-          style={{ flexDirection: 'row', alignItems: 'center' }}>
+          className="items-center gap-2">
           <Icon name="arrow-back" size={24} color="#333" />
           <Text className="text-xl font-bold">Geri</Text>
         </Button>

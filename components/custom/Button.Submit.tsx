@@ -26,9 +26,8 @@ function SubmitButton(args: SubmitButtonProps<any>) {
     <Button
       {...args}
       onPress={onSubmit}
-      style={{ minHeight: 48 }}
       className={cn(
-        'my-2 flex flex-row items-center justify-center gap-2 rounded-full',
+        'my-2 flex min-h-12 flex-row items-center justify-center gap-2 rounded-full',
         args.className
       )}
       disabled={args.disabled || isSubmitting}>
