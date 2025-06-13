@@ -17,12 +17,7 @@ export default function App() {
       await SplashScreen.hideAsync();
     }, 2000);
   }
-  function redirectToRegistrationFlow() {
-    router.replace('/(public)/(register)/registration-flow');
-    setTimeout(async () => {
-      await SplashScreen.hideAsync();
-    }, 2000);
-  }
+
   function redirectToHome() {
     router.replace('/(tabs)');
     setTimeout(async () => {
@@ -51,11 +46,6 @@ export default function App() {
       setProfile(userProfile);
       const grantedPolicies = await getGrantedPoliciesApi();
       setGrantedPolicies(grantedPolicies);
-
-      if (!isProfileCompleted(userProfile)) {
-        redirectToRegistrationFlow();
-        return;
-      }
       redirectToHome();
     } else {
       // Navigate to the login screen

@@ -61,7 +61,7 @@ export default function Login() {
           router.replace('/(tabs)');
           return;
         }
-        router.replace('/(public)/(register)/registration-flow');
+        router.replace('/(tabs)');
         return;
       }
     } catch (error) {

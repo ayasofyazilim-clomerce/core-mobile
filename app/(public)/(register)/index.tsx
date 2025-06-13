@@ -50,7 +50,7 @@ export default function Register() {
         setSubmitError(loginStatus);
       }
       if (loginStatus === true && (await getUserData(setProfile, setGrantedPolicies))) {
-        router.replace('/registration-flow');
+        router.replace('/(tabs)');
         return;
       }
     } catch (error) {
@@ -69,7 +69,7 @@ export default function Register() {
         <Button
           variant={'ghost'}
           onPress={() => router.replace('/(public)/login')}
-          className="items-center gap-2">
+          className="flex flex-row items-center gap-2">
           <Icon name="arrow-back" size={24} color="#333" />
           <Text className="text-xl font-bold">Geri</Text>
         </Button>
@@ -117,7 +117,9 @@ export default function Register() {
               />
             </View>
 
-            {submitDisabled && <Text className="mt-4 text-red-700">{submitError} </Text>}
+            {submitDisabled && submitError && (
+              <Text className="mt-4 text-red-700">{submitError} </Text>
+            )}
 
             <SubmitButton
               icon={'arrow-forward'}
