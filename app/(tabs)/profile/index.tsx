@@ -93,11 +93,12 @@ export default function Profile() {
           <ListItem
             title="Şifre değiştir"
             icon="lock-closed-outline"
+            isDisabled={true}
             onPress={() => router.navigate('/(tabs)/profile/(account)/change-password')}
           />
-          <ListItem title="Bildirim tercihleri" icon="notifications-outline" />
+          <ListItem title="Bildirim tercihleri" icon="notifications-outline" isDisabled={true} />
 
-          <ListItem title="Destek" icon="information-circle-outline" />
+          <ListItem title="Destek" icon="information-circle-outline" isDisabled={true} />
         </ListView>
         <ListView title="Diğer">
           <ListItem title="Çıkış Yap" icon="log-out-outline" onPress={logoutAndRedirect} />
