@@ -8,18 +8,8 @@ export function Header(props: BottomTabHeaderProps | NativeStackHeaderProps) {
   const router = useRouter();
 
   return (
-    <View
-      style={{
-        paddingHorizontal: 24,
-        paddingBottom: 12,
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        borderBottomWidth: 1,
-        borderColor: '#ddd',
-        alignItems: 'center',
-      }}>
-      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+    <View className="flex flex-row items-center justify-between border-b border-gray-300 px-6 pb-3">
+      <View className="flex flex-row items-center">
         {'headerBackVisible' in props.options && (
           <Icon
             name="arrow-back"
