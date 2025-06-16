@@ -11,6 +11,7 @@ export default function Layout() {
       }}>
       <Stack.Screen name="edit-profile" options={{ title: 'Hesap Ayarları' }} />
       <Stack.Screen name="change-password" options={{ title: 'Şifre Değiştir' }} />
+      <Stack.Screen name="registration-flow" options={{ title: 'Hesap Doğrulama' }} />
     </Stack>
   );
 }
